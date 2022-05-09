@@ -12,7 +12,7 @@ $spacer: 1rem;
     background-size: cover;
     position: relative;
     background-position: bottom;
-    min-height: 70vh;
+    min-height: 350px;
 
     .logo {
         opacity: 0.8;
@@ -25,13 +25,13 @@ $spacer: 1rem;
         mix-blend-mode: overlay;
         color: #b1b1b1;
         line-height: 0.85em;
-        font-size: 20vw;
-        bottom: 1vh;
+        font-size: 3rem;
+        right: 100px;
     }
 
     @media all and (min-width: 768px) {
         .title {
-            font-size: 12vw;
+            font-size: 5rem;
         }
 
         .scene {
@@ -40,16 +40,22 @@ $spacer: 1rem;
     }
 }
 
-.top-categories {
+.container {
+    max-width: 1510px;
+}
+
+.top-seller {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 350px);
+    grid-template-columns: repeat(2, 1fr);
     grid-row-gap: $spacer;
-    justify-content: space-around;
+    justify-content: center;
+    grid-gap: 0 3%;
 }
 
 .product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 220px);
+    grid-template-columns: repeat(3, 1fr);
     grid-row-gap: $spacer;
-    justify-content: space-around;
+    justify-content: center;
+    column-gap: 3%;
 }
