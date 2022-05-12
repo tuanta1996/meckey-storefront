@@ -1,5 +1,27 @@
-<div class="hero" [style.background-image]="heroImage">
+<!-- <div class="hero" [style.background-image]="heroImage">
     <h1 class="title text-center">vendure storefront</h1>
+</div> -->
+<div
+    class="hero"
+    *ngIf="banner$ | async"
+    [style.background-image]="banner$ | async"
+>
+    <div class="container position-relative">
+        <div class="title-container text-center">
+            <h1 class="title">
+                {{ (featureProduct$ | async)?.product.name }}
+            </h1>
+            <a
+                class="btn btn-primary btn-lg mt-4"
+                [routerLink]="[
+                    '/product',
+                    (featureProduct$ | async)?.product.slug
+                ]"
+                target="_blank"
+                >Check out</a
+            >
+        </div>
+    </div>
 </div>
 
 <div class="container">

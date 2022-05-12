@@ -20,13 +20,18 @@ $spacer: 1rem;
         margin: $spacer;
     }
 
-    .title {
+    .title-container {
         position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .title {
         mix-blend-mode: overlay;
         color: #b1b1b1;
-        line-height: 0.85em;
         font-size: 3rem;
-        right: 100px;
+        line-height: 0.85em;
     }
 
     @media all and (min-width: 768px) {

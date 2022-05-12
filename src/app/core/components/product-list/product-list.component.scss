@@ -7,7 +7,7 @@
 
 .masthead {
     background-color: $light;
-    min-height: 40vh;
+    min-height: 20vh;
     position: relative;
 
     &.search-mode {
@@ -46,10 +46,10 @@
 
 .product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 220px);
+    grid-template-columns: repeat(3, 1fr);
     grid-row-gap: $spacer;
-    justify-content: space-around;
-    min-height: 50vh;
+    justify-content: center;
+    column-gap: 3%;
 }
 
 .no-results {

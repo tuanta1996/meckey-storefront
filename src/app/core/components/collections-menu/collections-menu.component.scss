@@ -3,7 +3,7 @@
 :host {
     display: none;
     margin-bottom: 0;
-    background-color: $white;
+    background-color: transparent;
     overflow: auto;
 
     .nav-wrapper {
@@ -41,12 +41,12 @@
     }
 
     .level-2-link {
-
     }
 }
 
 .nav-link {
-    &:hover, &.active {
+    &:hover,
+    &.active {
         background-color: white;
     }
 }

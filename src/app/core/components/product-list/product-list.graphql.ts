@@ -1,7 +1,6 @@
-import {gql} from 'apollo-angular';
+import { gql } from "apollo-angular";
 
-
-import { ASSET_FRAGMENT } from '../../../common/graphql/fragments.graphql';
+import { ASSET_FRAGMENT } from "../../../common/graphql/fragments.graphql";
 
 export const SEARCH_PRODUCTS = gql`
     query SearchProducts($input: SearchInput!) {
@@ -64,6 +63,31 @@ export const GET_COLLECTION = gql`
                     ...Asset
                 }
                 name
+            }
+            productVariants {
+                items {
+                    productId
+                    assets {
+                        id
+                        preview
+                    }
+                    priceWithTax
+                    product {
+                        slug
+                        name
+                        customFields {
+                            salesType
+                            groupbuyEndDate
+                            groupbuyEta
+                            preorderEta
+                            isRestocking
+                            restockingEta
+                            featuredBanner {
+                                ...Asset
+                            }
+                        }
+                    }
+                }
             }
         }
     }

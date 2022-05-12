@@ -1,14 +1,16 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { Maybe } from "graphql/jsutils/Maybe";
 
-import { SearchProducts } from '../../../common/generated-types';
+import { Scalars, SearchProducts } from "../../../common/generated-types";
 
 @Component({
-    selector: 'vsf-product-card',
-    templateUrl: './product-card.component.html',
-    styleUrls: ['./product-card.component.scss'],
+    selector: "vsf-product-card",
+    templateUrl: "./product-card.component.html",
+    styleUrls: ["./product-card.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductCardComponent {
-
-    @Input() product: SearchProducts.Items;
+    @Input() product: SearchProducts.Items & {
+        customFields?: Maybe<Scalars["JSON"]>;
+    };
 }

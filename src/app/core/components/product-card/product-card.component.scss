@@ -15,6 +15,7 @@
 .image-wrapper {
     display: block;
     overflow: hidden;
+    position: relative;
 }
 
 .product-image {
@@ -23,6 +24,17 @@
     opacity: 0.85;
     height: auto;
     width: 100%;
+}
+
+.sale-type {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 1rem 2rem;
+    background-color: #0c96a0;
+    text-transform: capitalize;
+    color: white;
+    font-weight: 700;
 }
 
 .product-name {

@@ -5,6 +5,9 @@
                 class="product-image"
                 [src]="product.productAsset | assetPreview"
             />
+            <span *ngIf="product.customFields && product.customFields.salesType" class="sale-type">{{
+                product.customFields.salesType
+            }}</span>
         </a>
         <div class="d-flex justify-content-between mt-2">
             <a [routerLink]="['/product', product.slug]" class="product-name">

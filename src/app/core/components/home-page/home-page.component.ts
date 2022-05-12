@@ -3,9 +3,10 @@ import { DomSanitizer, SafeStyle } from "@angular/platform-browser";
 import { gql } from "apollo-angular";
 import { Observable } from "rxjs";
 import { map, shareReplay } from "rxjs/operators";
-
-import { environment } from "../../../../environments/environment";
+import { GetCollection, ProductVariant } from "src/app/common/generated-types";
+import { AssetPreviewPipe } from "src/app/shared/pipes/asset-preview.pipe";
 import { DataService } from "../../providers/data/data.service";
+import { GET_COLLECTION } from "../product-list/product-list.graphql";
 
 @Component({
     selector: "vsf-home-page",
@@ -18,7 +19,8 @@ export class HomePageComponent implements OnInit {
     topSellersLoaded$: Observable<boolean>;
     productList$: Observable<any[]>;
     productListLoaded$: Observable<boolean>;
-    heroImage: SafeStyle;
+    featureProduct$: Observable<any>;
+    banner$: Observable<SafeStyle>;
     readonly placeholderProducts = Array.from({ length: 12 }).map(() => null);
     constructor(
         private dataService: DataService,
@@ -26,11 +28,42 @@ export class HomePageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.topSellers$ = this.dataService.query(GET_TOP_SELLERS).pipe(
-            map((data) => data.search.items),
+        const collection = this.dataService
+            .query<GetCollection.Query, GetCollection.Variables>(
+                GET_COLLECTION,
+                {
+                    slug: "feature",
+                }
+            )
+            .pipe(map((data) => data.collection));
+
+        const topSellers = collection.pipe(
+            map((data) => (data as any).productVariants.items),
             shareReplay(1)
         );
-        this.topSellersLoaded$ = this.topSellers$.pipe(
+
+        this.topSellers$ = topSellers.pipe(
+            map((data: ProductVariant[]) => {
+                return data.map((item: ProductVariant) => {
+                    return {
+                        __typename: "SearchResult",
+                        priceWithTax: {
+                            __typename: "PriceRange",
+                            min: item.priceWithTax,
+                            max: item.priceWithTax,
+                        },
+                        productAsset:
+                            item.assets.length > 0 ? item.assets[0] : undefined,
+                        productId: item.productId,
+                        productName: item.product.name,
+                        slug: item.product.slug,
+                        customFields: item.product.customFields,
+                    };
+                });
+            }),
+            shareReplay(1)
+        );
+        this.topSellersLoaded$ = topSellers.pipe(
             map((items) => 0 < items.length)
         );
 
@@ -42,14 +75,30 @@ export class HomePageComponent implements OnInit {
             map((items) => 0 < items.length)
         );
 
-        this.heroImage = this.sanitizer.bypassSecurityTrustStyle(
-            this.getHeroImageUrl()
+        this.featureProduct$ = topSellers.pipe(
+            map((productList) => {
+                return productList.find(
+                    (product: ProductVariant) =>
+                        product.product.customFields.featuredBanner !== null
+                );
+            })
         );
-    }
-
-    private getHeroImageUrl(): string {
-        const { apiHost, apiPort } = environment;
-        return `url('${apiHost}:${apiPort}/assets/preview/37/banner__preview.png')`;
+        const assetPreviewPipe = new AssetPreviewPipe();
+        this.banner$ = this.featureProduct$.pipe(
+            map((product) => {
+                return (
+                    "url(" +
+                    assetPreviewPipe.transform(
+                        product.product.customFields.featuredBanner ||
+                            undefined,
+                        1000,
+                        300
+                    ) +
+                    ")"
+                );
+            }),
+            map((style) => this.sanitizer.bypassSecurityTrustStyle(style))
+        );
     }
 }
 

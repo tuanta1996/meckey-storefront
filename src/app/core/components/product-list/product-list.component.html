@@ -11,12 +11,12 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-12 col-md-2">
+        <!-- <div class="col-12 col-md-2">
             <vsf-product-list-controls [facetValues]="facetValues"
                                        [activeFacetValueIds]="activeFacetValueIds$ | async"
                                        [totalResults]="unfilteredTotalItems"></vsf-product-list-controls>
-        </div>
-        <div class="col-12 col-md-10">
+        </div> -->
+        <div class="col-12 col-md-12">
             <ng-container *ngIf="collection$ | async as collection">
                 <div *ngIf="collection.children.length" class="child-categories d-flex flex-column flex-md-row">
                     <vsf-collection-card *ngFor="let child of collection.children"
