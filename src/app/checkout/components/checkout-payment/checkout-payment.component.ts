@@ -8,6 +8,7 @@ import { StateService } from '../../../core/providers/state/state.service';
 
 import { ADD_PAYMENT, GET_ELIGIBLE_PAYMENT_METHODS } from './checkout-payment.graphql';
 import { map } from 'rxjs/operators';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'vsf-checkout-payment',
@@ -25,7 +26,8 @@ export class CheckoutPaymentComponent implements OnInit {
     constructor(private dataService: DataService,
                 private stateService: StateService,
                 private router: Router,
-                private route: ActivatedRoute) { }
+                private route: ActivatedRoute,
+                private sanitizer: DomSanitizer) { }
 
     ngOnInit() {
         this.paymentMethods$ = this.dataService.query<GetEligiblePaymentMethods.Query>(GET_ELIGIBLE_PAYMENT_METHODS)
@@ -41,11 +43,12 @@ export class CheckoutPaymentComponent implements OnInit {
         return Array.from({ length: 10 }).map((_, i) => year + i);
     }
 
-    completeOrder(paymentMethodCode: string) {
+    completeOrder(paymentMethodCode: GetEligiblePaymentMethods.EligiblePaymentMethods) {
+        console.log(paymentMethodCode);
         this.dataService.mutate<AddPayment.Mutation, AddPayment.Variables>(ADD_PAYMENT, {
             input: {
-                method: paymentMethodCode,
-                metadata: {},
+                method: paymentMethodCode.code,
+                metadata: paymentMethodCode.customFields,
             },
         })
             .subscribe(async ({ addPaymentToOrder }) => {

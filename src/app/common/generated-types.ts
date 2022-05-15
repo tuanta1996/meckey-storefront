@@ -2075,6 +2075,7 @@ export type PaymentMethodQuote = {
   eligibilityMessage?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   isEligible: Scalars['Boolean'];
+  customFields?: Maybe<Scalars['JSON']>;
 };
 
 /**
@@ -3385,7 +3386,7 @@ export type GetOrderByCodeQuery = (
   { __typename?: 'Query' }
   & { orderByCode?: Maybe<(
     { __typename?: 'Order' }
-    & Pick<Order, 'updatedAt'>
+    & Pick<Order, 'updatedAt' | "payments">
     & { customer?: Maybe<(
       { __typename?: 'Customer' }
       & Pick<Customer, 'id' | 'emailAddress' | 'firstName' | 'lastName'>
@@ -3405,7 +3406,7 @@ export type GetEligiblePaymentMethodsQuery = (
   { __typename?: 'Query' }
   & { eligiblePaymentMethods: Array<(
     { __typename?: 'PaymentMethodQuote' }
-    & Pick<PaymentMethodQuote, 'id' | 'code' | 'eligibilityMessage' | 'isEligible'>
+    & Pick<PaymentMethodQuote, 'id' | 'code' | 'eligibilityMessage' | 'isEligible' | 'customFields'>
   )> }
 );
 

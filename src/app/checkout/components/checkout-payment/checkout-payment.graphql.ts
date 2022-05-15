@@ -9,6 +9,9 @@ export const GET_ELIGIBLE_PAYMENT_METHODS = gql`
             code
             eligibilityMessage
             isEligible
+            customFields {
+                postCheckoutPaymentInfo
+            }
         }
     }
 `;

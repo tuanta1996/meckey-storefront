@@ -8,6 +8,10 @@ export const GET_ORDER_BY_CODE = gql`
         orderByCode(code: $code) {
             ...Cart
             updatedAt
+            payments {
+                metadata,
+                method
+            }
             customer {
                 id
                 emailAddress
