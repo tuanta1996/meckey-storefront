@@ -4,6 +4,10 @@
     display: block;
 }
 
+.container {
+    max-width: 1510px;
+}
+
 .product-image {
     width: 100%;
 
@@ -68,7 +72,8 @@
 }
 
 .price {
-    font-size: $font-size-lg;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .qty {
@@ -105,4 +110,36 @@
             height: 50px;
         }
     }
+}
+
+.sale-type {
+    padding: 1rem 2rem;
+    text-transform: capitalize;
+    color: white;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.type-instock {
+    background-color: #49a339;
+}
+
+.type-preorder {
+    background-color: #fee548;
+}
+
+.type-groupbuy {
+    background-color: #0c96a0;
+}
+
+.type-limited {
+    background-color: #0c96a0;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: $spacer;
+    justify-content: center;
+    column-gap: 3%;
 }

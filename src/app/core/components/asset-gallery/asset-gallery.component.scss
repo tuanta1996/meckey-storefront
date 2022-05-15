@@ -20,18 +20,26 @@
     .main-preview {
         cursor: zoom-in;
     }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
 }
 .alt-images {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
 
     .alt-image {
         cursor: pointer;
-        border: 6px solid transparent;
 
         img {
-            min-width: 50px;
-            min-height: 50px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
         }
 
         &.selected {

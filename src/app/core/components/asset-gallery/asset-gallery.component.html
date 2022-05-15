@@ -1,5 +1,5 @@
 <div class="product-image">
-    <div class="main-image">
+    <div class="main-image mb-3">
         <img *ngIf="selectedAsset" [src]="selectedAsset | assetPreview:540"
              #mainPreview
              class="img-fluid main-preview"
@@ -11,7 +11,7 @@
              class="alt-image"
              [class.selected]="selectedAsset.id === asset.id"
              (click)="selectImage(asset.id)">
-            <img [src]="asset | assetPreview:'tiny'">
+            <img [src]="asset | assetPreview:'200'">
         </div>
     </div>
 </div>
