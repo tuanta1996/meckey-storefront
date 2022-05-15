@@ -17,10 +17,12 @@ import { GET_COLLECTION } from "../product-list/product-list.graphql";
 export class HomePageComponent implements OnInit {
     topSellers$: Observable<any[]>;
     topSellersLoaded$: Observable<boolean>;
-    productList$: Observable<any[]>;
-    productListLoaded$: Observable<boolean>;
     featureProduct$: Observable<any>;
     banner$: Observable<SafeStyle>;
+
+    productList$: Observable<any[]>;
+    productListLoaded$: Observable<boolean>;
+
     readonly placeholderProducts = Array.from({ length: 12 }).map(() => null);
     constructor(
         private dataService: DataService,
@@ -28,47 +30,61 @@ export class HomePageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        // Get featured information
         const collection = this.dataService
             .query<GetCollection.Query, GetCollection.Variables>(
                 GET_COLLECTION,
                 {
-                    slug: "feature",
+                    slug: "featured",
                 }
             )
             .pipe(map((data) => data.collection));
-
         const topSellers = collection.pipe(
-            map((data) => (data as any).productVariants.items),
+            map((data: any) => data.productVariants.items),
             shareReplay(1)
         );
-
         this.topSellers$ = topSellers.pipe(
             map((data: ProductVariant[]) => {
-                return data.map((item: ProductVariant) => {
-                    return {
-                        __typename: "SearchResult",
-                        priceWithTax: {
-                            __typename: "PriceRange",
-                            min: item.priceWithTax,
-                            max: item.priceWithTax,
-                        },
-                        productAsset:
-                            item.assets.length > 0 ? item.assets[0] : undefined,
-                        productId: item.productId,
-                        productName: item.product.name,
-                        slug: item.product.slug,
-                        customFields: item.product.customFields,
-                    };
-                });
+                return data
+                    .filter(
+                        (el: ProductVariant) =>
+                            el.product.customFields.featuredBanner === null
+                    )
+                    .map((item: ProductVariant) => {
+                        return {
+                            __typename: "SearchResult",
+                            priceWithTax: {
+                                __typename: "PriceRange",
+                                min: item.priceWithTax,
+                                max: item.priceWithTax,
+                            },
+                            productAsset:
+                                item.assets.length > 0
+                                    ? item.assets[0]
+                                    : undefined,
+                            productId: item.productId,
+                            productName: item.product.name,
+                            slug: item.product.slug,
+                            customFields: item.product.customFields,
+                        };
+                    });
             }),
             shareReplay(1)
         );
         this.topSellersLoaded$ = topSellers.pipe(
             map((items) => 0 < items.length)
         );
+        const featureCollectionId = collection.pipe(
+            map((data: any) => data.id)
+        );
 
         this.productList$ = this.dataService.query(GET_PRODUCT_LIST).pipe(
-            map((data) => data.search.items),
+            map((data) =>
+                data.search.items.filter((item: any) => {
+                    console.log(item);
+                    return !item.collectionIds.includes(featureCollectionId);
+                })
+            ),
             shareReplay(1)
         );
         this.productListLoaded$ = this.productList$.pipe(
@@ -126,28 +142,7 @@ const GET_PRODUCT_LIST = gql`
                     }
                 }
                 productName
-            }
-        }
-    }
-`;
-
-const GET_TOP_SELLERS = gql`
-    query GetTopSellers {
-        search(input: { take: 4, groupByProduct: true, sort: { price: ASC } }) {
-            items {
-                productId
-                slug
-                productAsset {
-                    id
-                    preview
-                }
-                priceWithTax {
-                    ... on PriceRange {
-                        min
-                        max
-                    }
-                }
-                productName
+                collectionIds
             }
         }
     }

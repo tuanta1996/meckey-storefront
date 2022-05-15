@@ -8,7 +8,7 @@
         >
             <a
                 class="nav-link"
-                *ngIf="collection.name != 'Feature'"
+                *ngIf="collection.name != 'Featured'"
                 [class.active]="
                     (setActiveCollection$ | async)?.id === collection.id &&
                         overlayIsOpen$ | async
