@@ -3,8 +3,8 @@ import { DomSanitizer, SafeStyle } from "@angular/platform-browser";
 import { gql } from "apollo-angular";
 import { Observable } from "rxjs";
 import { map, shareReplay } from "rxjs/operators";
-import { GetCollection, ProductVariant } from "src/app/common/generated-types";
-import { AssetPreviewPipe } from "src/app/shared/pipes/asset-preview.pipe";
+import { GetCollection } from "../../../common/generated-types";
+import { AssetPreviewPipe } from "../../../shared/pipes/asset-preview.pipe";
 import { DataService } from "../../providers/data/data.service";
 import { GET_COLLECTION } from "../product-list/product-list.graphql";
 
@@ -40,17 +40,17 @@ export class HomePageComponent implements OnInit {
             )
             .pipe(map((data) => data.collection));
         const topSellers = collection.pipe(
-            map((data: any) => data.productVariants.items),
+            map((data: any) => data.anys.items),
             shareReplay(1)
         );
         this.topSellers$ = topSellers.pipe(
-            map((data: ProductVariant[]) => {
+            map((data: any[]) => {
                 return data
                     .filter(
-                        (el: ProductVariant) =>
+                        (el: any) =>
                             el.product.customFields.featuredBanner === null
                     )
-                    .map((item: ProductVariant) => {
+                    .map((item: any) => {
                         return {
                             __typename: "SearchResult",
                             priceWithTax: {
@@ -94,7 +94,7 @@ export class HomePageComponent implements OnInit {
         this.featureProduct$ = topSellers.pipe(
             map((productList) => {
                 return productList.find(
-                    (product: ProductVariant) =>
+                    (product: any) =>
                         product.product.customFields.featuredBanner !== null
                 );
             })
