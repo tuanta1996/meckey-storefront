@@ -77,7 +77,7 @@
 
 .placeholder-title {
     height: $font-size-base;
-    margin-bottom: math.div($spacer, 2);
+    margin-bottom: $spacer / 2;
 }
 
 .placeholder-body {
