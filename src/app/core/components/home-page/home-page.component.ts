@@ -40,7 +40,7 @@ export class HomePageComponent implements OnInit {
             )
             .pipe(map((data) => data.collection));
         const topSellers = collection.pipe(
-            map((data: any) => data.anys.items),
+            map((data: any) => data.productVariants.items),
             shareReplay(1)
         );
         this.topSellers$ = topSellers.pipe(
