@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "variables";
 
 :host {
@@ -35,7 +36,7 @@
     }
 
     .label {
-        margin-left: $spacer / 2;
+        margin-left: math.div($spacer, 2);
         color: $gray-600;
     }
 }
@@ -44,5 +45,5 @@
     flex: 1;
     height: 0;
     border-bottom: 1px solid $gray-300;
-    margin: 0 $spacer / 2;
+    margin: 0 math.div($spacer, 2);
 }

@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "variables";
 
 :host {
@@ -77,7 +78,7 @@
 
 .placeholder-title {
     height: $font-size-base;
-    margin-bottom: $spacer / 2;
+    margin-bottom: math.div($spacer, 2);
 }
 
 .placeholder-body {
