@@ -39,6 +39,7 @@ export class HomePageComponent implements OnInit {
                 }
             )
             .pipe(map((data) => data.collection));
+
         const topSellers = collection.pipe(
             map((data: any) => data.productVariants.items),
             shareReplay(1)
@@ -58,16 +59,17 @@ export class HomePageComponent implements OnInit {
                                 min: item.priceWithTax,
                                 max: item.priceWithTax,
                             },
-                            productAsset:
-                                item.assets.length > 0
-                                    ? item.assets[0]
-                                    : undefined,
+                            productAsset: item.product.featuredAsset,
                             productId: item.productId,
                             productName: item.product.name,
                             slug: item.product.slug,
                             customFields: item.product.customFields,
                         };
-                    });
+                    })
+                    .filter(
+                        (value: any, index: number, array: any[]) =>
+                            array.indexOf(value) === index
+                    );
             }),
             shareReplay(1)
         );
@@ -81,7 +83,6 @@ export class HomePageComponent implements OnInit {
         this.productList$ = this.dataService.query(GET_PRODUCT_LIST).pipe(
             map((data) =>
                 data.search.items.filter((item: any) => {
-                    console.log(item);
                     return !item.collectionIds.includes(featureCollectionId);
                 })
             ),

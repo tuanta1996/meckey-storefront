@@ -75,6 +75,9 @@ export const GET_COLLECTION = gql`
                     product {
                         slug
                         name
+                        featuredAsset {
+                            ...Asset
+                        }
                         customFields {
                             salesType
                             groupbuyEndDate
