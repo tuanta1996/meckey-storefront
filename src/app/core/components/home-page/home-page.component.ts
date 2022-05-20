@@ -82,17 +82,20 @@ export class HomePageComponent implements OnInit {
             map((data: any) => data.id)
         );
 
-        this.productList$ = this.dataService.query(GET_PRODUCT_LIST).pipe(
-            map((data) =>
-                data.search.items.filter((item: any) => {
-                    return !item.collectionIds.includes(featureCollectionId);
-                })
-            ),
-            shareReplay(1)
-        );
-        this.productListLoaded$ = this.productList$.pipe(
-            map((items) => 0 < items.length)
-        );
+        featureCollectionId.subscribe((id) => {
+            this.productList$ = this.dataService.query(GET_PRODUCT_LIST).pipe(
+                map((data) =>
+                    data.search.items.filter((item: any) => {
+                        return !item.collectionIds.includes(id);
+                    })
+                ),
+                shareReplay(1)
+            );
+
+            this.productListLoaded$ = this.productList$.pipe(
+                map((items) => 0 < items.length)
+            );
+        });
 
         this.featureProduct$ = topSellers.pipe(
             map((productList) => {

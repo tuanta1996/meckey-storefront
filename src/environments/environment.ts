@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    apiHost: 'http://vps-2b544cb0.vps.ovh.ca', 
+    apiHost: 'http://localhost', 
     apiPort: 3000,
     shopApiPath: 'shop-api',
     baseHref: '/',
