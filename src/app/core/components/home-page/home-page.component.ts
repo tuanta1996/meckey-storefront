@@ -68,7 +68,9 @@ export class HomePageComponent implements OnInit {
                     })
                     .filter(
                         (value: any, index: number, array: any[]) =>
-                            array.indexOf(value) === index
+                            array
+                                .map((e) => e.productId)
+                                .indexOf(value.productId) === index
                     );
             }),
             shareReplay(1)
