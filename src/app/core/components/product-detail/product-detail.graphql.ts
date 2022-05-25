@@ -16,6 +16,7 @@ export const GET_PRODUCT_DETAIL = gql`
                 id
                 name
                 options {
+                    id
                     code
                     name
                 }
@@ -28,6 +29,14 @@ export const GET_PRODUCT_DETAIL = gql`
             }
             assets {
                 ...Asset
+            }
+            optionGroups {
+                name
+                options {
+                    id
+                    code
+                    name
+                }
             }
             collections {
                 id

@@ -117,7 +117,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
                 this.productList$ = this.dataService
                     .query(GET_PRODUCT_LIST)
                     .pipe(
-                        map((data) => data.search.items.filter((item: any) => item.productId !== product.id).slice(0, 3)),
+                        map((data) =>
+                            data.search.items
+                                .filter(
+                                    (item: any) => item.productId !== product.id
+                                )
+                                .slice(0, 3)
+                        ),
                         shareReplay(1)
                     );
                 this.productListLoaded$ = this.productList$.pipe(
@@ -177,6 +183,34 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         closeFn();
     }
 
+    changeOption(e: any) {
+        document
+            .querySelectorAll("label." + e.target.classList[0])
+            ?.forEach((label: any) => label.classList.remove("active"));
+        document
+            .querySelector("#label-" + e.target.value)
+            ?.classList.add("active");
+
+        let options: any[] = [];
+        document.querySelectorAll("input")?.forEach((input: any) => {
+            if (input.checked) {
+                options.push(
+                    this.product.optionGroups
+                        .find((optionGroup) => optionGroup.name === input.name)
+                        ?.options.find((option) => option.id === input.id)
+                );
+            }
+        });
+
+        let findVariant = this.product.variants.find((variant) =>
+            this.areOptionEqual(variant.options, options)
+        );
+
+        this.selectedVariant = findVariant
+            ? findVariant
+            : this.product.variants[0];
+    }
+
     /**
      * If there is a collection matching the `lastCollectionId`, return that. Otherwise return the collection
      * with the longest `breadcrumbs` array, which corresponds to the most specific collection.
@@ -200,5 +234,19 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
             }
             return 0;
         })[0];
+    }
+
+    private areOptionEqual(array1: any[], array2: any[]) {
+        if (array1.length === array2.length) {
+            return array1.every((element) => {
+                if (array2.find((el) => el.id === element.id)) {
+                    return true;
+                }
+
+                return false;
+            });
+        }
+
+        return false;
     }
 }

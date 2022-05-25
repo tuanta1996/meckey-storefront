@@ -127,12 +127,7 @@ export class HomePageComponent implements OnInit {
 const GET_PRODUCT_LIST = gql`
     query GetProductList {
         search(
-            input: {
-                skip: 4
-                take: 12
-                groupByProduct: true
-                sort: { price: ASC }
-            }
+            input: { take: 12, groupByProduct: true, sort: { price: ASC } }
         ) {
             items {
                 productId

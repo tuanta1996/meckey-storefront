@@ -4245,7 +4245,7 @@ export type GetProductDetailQuery = { __typename?: "Query" } & {
     product?: Maybe<
         { __typename?: "Product" } & Pick<
             Product,
-            "id" | "name" | "description"
+            "id" | "name" | "description" | "optionGroups"
         > & {
                 variants: Array<
                     { __typename?: "ProductVariant" } & Pick<
@@ -4255,7 +4255,7 @@ export type GetProductDetailQuery = { __typename?: "Query" } & {
                             options: Array<
                                 { __typename?: "ProductOption" } & Pick<
                                     ProductOption,
-                                    "code" | "name"
+                                    "code" | "name" | "id"
                                 >
                             >;
                         }

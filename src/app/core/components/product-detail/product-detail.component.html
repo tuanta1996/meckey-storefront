@@ -23,7 +23,7 @@
                         class="variant-selector"
                         *ngIf="product.variants.length > 1"
                     >
-                        <select
+                        <!-- <select
                             [(ngModel)]="selectedVariant"
                             class="form-control"
                         >
@@ -33,7 +33,59 @@
                             >
                                 {{ variant.name }}
                             </option>
-                        </select>
+                        </select> -->
+                        <div
+                            class="option-groups"
+                            *ngFor="let optionGroup of product.optionGroups"
+                            [ngValue]="optionGroup"
+                        >
+                            <h5
+                                class="font-weight-bold"
+                                style="min-width: 100px"
+                            >
+                                {{ optionGroup.name }}
+                            </h5>
+                            <div class="row mx-0">
+                                <label
+                                    *ngFor="
+                                        let option of optionGroup.options;
+                                        first as isFirst
+                                    "
+                                    [ngValue]="option"
+                                    class="btn btn-outline-dark mr-2 col group-{{
+                                        optionGroup.name
+                                    }}"
+                                    [ngClass]="{ active: isFirst }"
+                                    id="label-{{ option.id }}"
+                                    for="{{ option.id }}"
+                                >
+                                    <input
+                                        *ngIf="isFirst"
+                                        ngbButton
+                                        id="{{ option.id }}"
+                                        class="group-{{ optionGroup.name }}"
+                                        type="radio"
+                                        value="{{ option.id }}"
+                                        name="{{ optionGroup.name }}"
+                                        style="display: none"
+                                        (change)="changeOption($event)"
+                                        checked
+                                    />
+                                    <input
+                                        *ngIf="!isFirst"
+                                        ngbButton
+                                        id="{{ option.id }}"
+                                        class="group-{{ optionGroup.name }}"
+                                        type="radio"
+                                        value="{{ option.id }}"
+                                        name="{{ optionGroup.name }}"
+                                        style="display: none"
+                                        (change)="changeOption($event)"
+                                    />
+                                    {{ option.name }}
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <div
                         class="description"
@@ -66,14 +118,15 @@
                         </button>
                     </div>
                 </div>
-                
             </div>
         </div>
         <div class="row mt-5">
             <div class="col-12 col-md-12 text-center">
                 <h2 class="font-weight-bold">Related product</h2>
                 <div class="product-list">
-                    <ng-container *ngIf="productListLoaded$ | async; else placeholders">
+                    <ng-container
+                        *ngIf="productListLoaded$ | async; else placeholders"
+                    >
                         <vsf-product-card
                             *ngFor="let product of productList$ | async"
                             [product]="product"
