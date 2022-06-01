@@ -41,7 +41,12 @@ export class HomePageComponent implements OnInit {
             .pipe(map((data) => data.collection));
 
         const topSellers = collection.pipe(
-            map((data: any) => data.productVariants.items),
+            map((data: any) =>
+                data.productVariants.items.filter(
+                    (item: any) =>
+                        item.languageCode === localStorage.getItem("language")
+                )
+            ),
             shareReplay(1)
         );
         this.topSellers$ = topSellers.pipe(

@@ -1,0 +1,52 @@
+{
+    "mechkey": {
+        "breadcrumb": {
+            "home": "Home"
+        },
+        "detail": {
+            "relatedProduct": "Related product",
+            "add2Cart": "Add to cart"
+        },
+        "cart": {
+            "cart": "Cart",
+            "checkout": "Check Out",
+            "shipping": "Shipping",
+            "total": "Total",
+            "cartEmpty": "Cart is empty"
+        },
+        "checkout": {
+            "selectAddress": "Select Address",
+            "addAddress": "Add new address",
+            "customerDetail": "Customer Details",
+            "next": "Next",
+            "shippingAddress": "Shipping Address",
+            "sendToAddress": "Send to this address",
+            "shippingMethod": "Shipping Method",
+            "processToPayment": "Proceed to payment",
+            "payWithMethod": "Pay with method",
+            "completeOrder": "Complete order",
+            "change": "Change",
+            "thank": "Cảm ơn bạn đã mua hàng tại The Keeps Shop",
+            "orderCode": "Mã đơn hàng",
+            "placed": "Tại",
+            "stateShipping": "Shipping",
+            "statePayment": "Payment",
+            "stateComplete": "Complete"
+        },
+        "nav": {
+            "orders": "Orders",
+            "shipping": "Shipping",
+            "track": "Track My Order",
+            "termACondition": "Terms & Conditions",
+            "returnPolicy": "Returns Policy",
+            "about": "About",
+            "aboutUs": "About Us",
+            "contactUs": "Contact Us",
+            "privacy": "Privacy Notice"
+        },
+        "footer": {
+            "subcribe": "Subscribe to our mailing list for exclusive news and offers!",
+            "btnSubcribe": "Subscribe"
+        }
+    }
+}

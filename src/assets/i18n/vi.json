@@ -1,0 +1,52 @@
+{
+    "mechkey": {
+        "breadcrumb": {
+            "home": "Trang chủ"
+        },
+        "detail": {
+            "relatedProduct": "Sản phẩm cùng loại",
+            "add2Cart": "Thêm vào giỏ hàng"
+        },
+        "cart": {
+            "cart": "Giỏ hàng",
+            "checkout": "Thanh toán",
+            "shipping": "Vận chuyển",
+            "total": "Tổng cộng",
+            "cartEmpty": "Giỏ hàng trống"
+        },
+        "checkout": {
+            "selectAddress": "Chọn địa chỉ",
+            "addAddress": "Thêm địa chỉ",
+            "customerDetail": "Thông tin khách hàng",
+            "next": "Tiếp tục",
+            "shippingAddress": "Địa chỉ giao hàng",
+            "sendToAddress": "Gửi đến",
+            "shippingMethod": "Phương thức vận chuyển",
+            "processToPayment": "Tiếp tục",
+            "payWithMethod": "Phương thức thanh toán",
+            "completeOrder": "Hoàn thành",
+            "change": "Thay đổi",
+            "thank": "Cảm ơn bạn đã mua hàng tại The Keeps Shop",
+            "orderCode": "Mã đơn hàng",
+            "placed": "Tại",
+            "stateShipping": "Vận chuyển",
+            "statePayment": "Thanh toán",
+            "stateComplete": "Hoàn tất"
+        },
+        "nav": {
+            "orders": "Về đơn hàng",
+            "shipping": "Chính sách vận chuyển",
+            "track": "Theo dõi đơn hàng",
+            "termACondition": "Điều khoản dịch vụ",
+            "returnPolicy": "Chính sách hoàn tiền",
+            "about": "Giới thiệu",
+            "aboutUs": "Về chúng tôi",
+            "contactUs": "Liên hệ",
+            "privacy": "Chính sách bảo mật"
+        },
+        "footer": {
+            "subcribe": "Đăng kí nhận các ưu đãi và thông tin mới nhất từ The Keeps Store!",
+            "btnSubcribe": "Đăng kí"
+        }
+    }
+}

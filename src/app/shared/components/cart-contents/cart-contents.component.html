@@ -43,7 +43,7 @@
     </div>
     <div class="shipping">
         <div class="shipping-price">
-            <span>Shipping:</span>
+            <span>{{ "mechkey.cart.shipping" | translate }}:</span>
             <span>{{ cart.shippingWithTax | formatPrice }}</span>
         </div>
         <div class="shipping-method" *ngFor="let shippingLine of cart.shippingLines">
@@ -51,7 +51,7 @@
         </div>
     </div>
     <div class="totals">
-        <span>Total:</span>
+        <span>{{ "mechkey.cart.total" | translate }}:</span>
         <span>{{ cart.totalWithTax | formatPrice }}</span>
     </div>
 </div>

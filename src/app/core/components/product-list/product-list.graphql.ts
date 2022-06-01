@@ -71,6 +71,7 @@ export const GET_COLLECTION = gql`
                         id
                         preview
                     }
+                    languageCode
                     priceWithTax
                     product {
                         slug

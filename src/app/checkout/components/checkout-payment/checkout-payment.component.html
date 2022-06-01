@@ -4,7 +4,11 @@
 <ng-container *ngFor="let paymentMethod of paymentMethods$ | async">
     <div class="row">
         <div class="col col-lg-6 offset-lg-3">
-            <h4>Pay with method "{{ paymentMethod.code }}"</h4>
+            <h4>
+                {{ "mechkey.checkout.payWithMethod" | translate }} "{{
+                    paymentMethod.code
+                }}"
+            </h4>
             <div
                 class="alert alert-info my-4"
                 role="alert"
@@ -54,6 +58,8 @@
         <!-- <button class="btn btn-primary btn-lg"
                 [disabled]="paymentForm.pristine || paymentForm.invalid">Complete order
         </button> -->
-        <button class="btn btn-primary btn-lg">Complete order</button>
+        <button class="btn btn-primary btn-lg">
+            {{ "mechkey.checkout.completeOrder" | translate }}
+        </button>
     </form>
 </ng-container>

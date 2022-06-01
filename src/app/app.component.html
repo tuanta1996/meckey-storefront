@@ -50,20 +50,20 @@
     <vsf-layout-footer>
         <div class="row text-muted mt-5 mb-5">
             <div class="col-md-3 text-center text-md-left">
-                <h3>Orders</h3>
+                <h3>{{ "mechkey.nav.orders" | translate }}</h3>
                 <ul class="list-unstyled">
-                    <li>Shipping</li>
-                    <li>Track My Order</li>
-                    <li>Terms & Conditions</li>
-                    <li>Returns Policy</li>
+                    <li>{{ "mechkey.nav.shipping" | translate }}</li>
+                    <li>{{ "mechkey.nav.track" | translate }}</li>
+                    <li>{{ "mechkey.nav.termACondition" | translate }}</li>
+                    <li>{{ "mechkey.nav.returnPolicy" | translate }}</li>
                 </ul>
             </div>
             <div class="col-md-3 text-center text-md-left">
-                <h3>About</h3>
+                <h3>{{ "mechkey.nav.about" | translate }}</h3>
                 <ul class="list-unstyled">
-                    <li>About Us</li>
-                    <li>Contact Us</li>
-                    <li>Privacy Notice</li>
+                    <li>{{ "mechkey.nav.aboutUs" | translate }}</li>
+                    <li>{{ "mechkey.nav.contactUs" | translate }}</li>
+                    <li>{{ "mechkey.nav.privacy" | translate }}</li>
                 </ul>
             </div>
             <div class="col">
@@ -74,26 +74,32 @@
                     <fa-icon size="2x" [icon]="['fab', 'youtube']"></fa-icon>
                 </div>
                 <div class="mailist mt-5 d-flex justify-content-around">
-                    <div class="lead">
-                        Subscribe to our mailing list for exclusive news and
-                        offers!
+                    <div class="lead col-9">
+                        {{ "mechkey.footer.subcribe" | translate }}
                     </div>
                     <button
                         type="button"
-                        class="btn btn-outline-secondary btn-lg"
+                        class="btn btn-outline-secondary btn-lg col-3"
                     >
-                        Subscribe
+                        {{ "mechkey.footer.btnSubcribe" | translate }}
                     </button>
                 </div>
+                <div class="switch-lang mt-2 d-flex justify-content-end">
+                    <select
+                        class="form-control col-3"
+                        #selectedLang
+                        (change)="switchLang(selectedLang.value)"
+                    >
+                        <option
+                            *ngFor="let language of translate.getLangs()"
+                            [value]="language"
+                            [selected]="language === translate.currentLang"
+                        >
+                            {{ languageName[language] }}
+                        </option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="text-center text-secondary">
-            This is a demo storefront for Vendure, an open-source headless
-            e-commerce framework:
-            <a href="https://www.vendure.io/">vendure.io</a><br />
-            <a href="https://github.com/vendure-ecommerce/storefront"
-                >@vendure/storefront on GitHub</a
-            >
         </div>
     </vsf-layout-footer>
 </vsf-layout>
