@@ -7425,6 +7425,11 @@
     "emojis-list" "^3.0.0"
     "json5" "^2.1.2"
 
+"localstorage-polyfill@^1.0.1":
+  "integrity" "sha512-m4iHVZxFH5734oQcPKU08025gIz2+4bjWR9lulP8ZYxEJR0BpA0w32oJmkzh8y3UI9ci7xCBehQDc3oA1X+VHw=="
+  "resolved" "https://registry.npmjs.org/localstorage-polyfill/-/localstorage-polyfill-1.0.1.tgz"
+  "version" "1.0.1"
+
 "localtunnel@^2.0.1":
   "integrity" "sha512-n418Cn5ynvJd7m/N1d9WVJISLJF/ellZnfsLnx8WBWGzxv/ntNcFkJ1o6se5quUhCplfLGBNL5tYHiq5WF3Nug=="
   "resolved" "https://registry.npmjs.org/localtunnel/-/localtunnel-2.0.2.tgz"

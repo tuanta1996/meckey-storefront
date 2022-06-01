@@ -143,8 +143,6 @@ export function apolloOptionsFactory(httpLink: HttpLink, platformId: any) {
             : apiPort;
         shopApiPath = process?.env?.SERVER_API_PATH || shopApiPath;
     }
-    console.log("aaaaa");
-    console.log(language);
     const result = {
         cache: apolloCache,
         link: ApolloLink.from([

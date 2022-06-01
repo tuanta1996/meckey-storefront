@@ -113,6 +113,9 @@ export class HomePageComponent implements OnInit {
         const assetPreviewPipe = new AssetPreviewPipe();
         this.banner$ = this.featureProduct$.pipe(
             map((product) => {
+                if (product === undefined || product.product === undefined) {
+                    return "";
+                }
                 return (
                     "url(" +
                     assetPreviewPipe.transform(
