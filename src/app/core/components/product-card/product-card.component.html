@@ -1,13 +1,16 @@
 <div class="product-card">
-    <ng-template [ngIf]="product" [ngIfElse]="placeholder">
+    <!-- <ng-template [ngIf]="product" [ngIfElse]="placeholder"> -->
+    <ng-template [ngIf]="product">
         <a [routerLink]="['/product', product.slug]" class="image-wrapper">
             <img
                 class="product-image"
                 [src]="product.productAsset | assetPreview"
             />
-            <span *ngIf="product.customFields && product.customFields.salesType" class="sale-type type-{{product.customFields.salesType}}">{{
-                product.customFields.salesType
-            }}</span>
+            <span
+                *ngIf="product.customFields && product.customFields.salesType"
+                class="sale-type type-{{ product.customFields.salesType }}"
+                >{{ product.customFields.salesType }}</span
+            >
         </a>
         <div class="d-flex justify-content-between mt-2">
             <a [routerLink]="['/product', product.slug]" class="product-name">
@@ -28,11 +31,11 @@
             </h4>
         </div>
     </ng-template>
-    <ng-template #placeholder>
+    <!-- <ng-template #placeholder>
         <div class="placeholder-image loading-placeholder"></div>
         <div class="card-body">
             <div class="placeholder-title loading-placeholder"></div>
             <div class="placeholder-body loading-placeholder"></div>
         </div>
-    </ng-template>
+    </ng-template> -->
 </div>

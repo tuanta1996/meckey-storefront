@@ -37,18 +37,12 @@
     </div>
     <div>
         <div class="product-list">
-            <ng-container *ngIf="productListLoaded$ | async; else placeholders">
+            <ng-container *ngIf="productListLoaded$">
                 <vsf-product-card
                     *ngFor="let product of productList$ | async"
                     [product]="product"
                 ></vsf-product-card>
             </ng-container>
-            <ng-template #placeholders>
-                <vsf-product-card
-                    *ngFor="let product of placeholderProducts"
-                    [product]="product"
-                ></vsf-product-card>
-            </ng-template>
         </div>
     </div>
 </div>
