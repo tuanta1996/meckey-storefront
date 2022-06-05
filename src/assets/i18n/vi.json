@@ -26,7 +26,7 @@
             "payWithMethod": "Phương thức thanh toán",
             "completeOrder": "Hoàn thành",
             "change": "Thay đổi",
-            "thank": "Cảm ơn bạn đã mua hàng tại The Keeps Shop",
+            "thank": "Cảm ơn bạn đã mua hàng tại The Keebs Shop",
             "orderCode": "Mã đơn hàng",
             "placed": "Tại",
             "stateShipping": "Vận chuyển",
@@ -45,7 +45,7 @@
             "privacy": "Chính sách bảo mật"
         },
         "footer": {
-            "subcribe": "Đăng kí nhận các ưu đãi và thông tin mới nhất từ The Keeps Store!",
+            "subcribe": "Đăng kí nhận các ưu đãi và thông tin mới nhất từ The Keebs Store!",
             "btnSubcribe": "Đăng kí"
         }
     }
