@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    apiHost: "http://vps-2b544cb0.vps.ovh.ca",
+    apiHost: "http://thekeebs.store",
     apiPort: 3010,
     shopApiPath: "shop-api",
     baseHref: "/",

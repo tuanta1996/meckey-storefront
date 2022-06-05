@@ -16,15 +16,14 @@ export const routes: Routes = [
             activeOrder: CheckoutResolver,
         },
         children: [
-            // {
-            //     path: '',
-            //     pathMatch: 'full',
-            //     component: CheckoutSignInComponent,
-            //     canActivate: [CheckoutGuard],
-            // },
             {
                 path: "",
-                // pathMatch: "full",
+                pathMatch: "full",
+                component: CheckoutSignInComponent,
+                canActivate: [CheckoutGuard],
+            },
+            {
+                path: "shipping",
                 component: CheckoutShippingComponent,
                 canActivate: [CheckoutGuard],
             },

@@ -1,36 +1,50 @@
 <div class="container">
     <div class="row">
-        <div class="col-12 col-md-3"
-             *ngIf="isSignedIn$ | async">
+        <div class="col-12 col-md-3" *ngIf="isSignedIn$ | async">
             <div class="list-group-flush">
-                <a class="list-group-item list-group-item-action"
-                   [routerLink]="['./']"
-                   [routerLinkActiveOptions]="{ exact: true }"
-                   routerLinkActive="active">
-                    Dashboard
+                <a
+                    class="list-group-item list-group-item-action"
+                    [routerLink]="['./']"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    routerLinkActive="active"
+                >
+                    {{ "mechkey.account.dashboard" | translate }}
                 </a>
-                <a class="list-group-item list-group-item-action"
-                   [routerLink]="['./', 'orders']"
-                   routerLinkActive="active">
-                    Orders
+                <a
+                    class="list-group-item list-group-item-action"
+                    [routerLink]="['./', 'orders']"
+                    routerLinkActive="active"
+                >
+                    {{ "mechkey.account.order" | translate }}
                 </a>
-                <a class="list-group-item list-group-item-action"
-                   [routerLink]="['./', 'address-book']"
-                   routerLinkActive="active">
-                    Address book
+                <a
+                    class="list-group-item list-group-item-action"
+                    [routerLink]="['./', 'address-book']"
+                    routerLinkActive="active"
+                >
+                    {{ "mechkey.account.addressBook" | translate }}
                 </a>
-                <a class="list-group-item list-group-item-action"
-                   [routerLink]="['./', 'details']"
-                   routerLinkActive="active">
-                    Personal details
+                <a
+                    class="list-group-item list-group-item-action"
+                    [routerLink]="['./', 'details']"
+                    routerLinkActive="active"
+                >
+                    {{ "mechkey.account.personalDetails" | translate }}
                 </a>
-                <a class="list-group-item list-group-item-action"
-                   [routerLink]="['./', 'change-credentials']"
-                   routerLinkActive="active">
-                    Change credentials
+                <a
+                    class="list-group-item list-group-item-action"
+                    [routerLink]="['./', 'change-credentials']"
+                    routerLinkActive="active"
+                >
+                    {{ "mechkey.account.changeCredentials" | translate }}
                 </a>
                 <a class="list-group-item">
-                    <button class="btn btn-warning btn-sm btn-block" (click)="signOut()">Sign out</button>
+                    <button
+                        class="btn btn-warning btn-sm btn-block"
+                        (click)="signOut()"
+                    >
+                        {{ "mechkey.account.signOut" | translate }}
+                    </button>
                 </a>
             </div>
         </div>

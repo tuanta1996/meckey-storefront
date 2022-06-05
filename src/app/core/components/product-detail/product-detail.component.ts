@@ -6,6 +6,7 @@ import {
     ViewChild,
 } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 import { gql } from "apollo-angular";
 import { Subscription, Observable } from "rxjs";
 import {
@@ -46,7 +47,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         private dataService: DataService,
         private stateService: StateService,
         private notificationService: NotificationService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private translate: TranslateService
     ) {}
 
     ngOnInit() {
@@ -152,18 +154,22 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
                             addItemToOrder ? addItemToOrder.id : null
                         );
                         if (variant) {
-                            this.notificationService
-                                .notify({
-                                    title: "Added to cart",
-                                    type: "info",
-                                    duration: 3000,
-                                    templateRef: this.addToCartTemplate,
-                                    templateContext: {
-                                        variant,
-                                        quantity: qty,
-                                    },
-                                })
-                                .subscribe();
+                            this.translate
+                                .get("mechkey.detail.added2Cart")
+                                .subscribe((title) => {
+                                    this.notificationService
+                                        .notify({
+                                            title: title,
+                                            type: "info",
+                                            duration: 3000,
+                                            templateRef: this.addToCartTemplate,
+                                            templateContext: {
+                                                variant,
+                                                quantity: qty,
+                                            },
+                                        })
+                                        .subscribe();
+                                });
                         }
                         break;
                     case "OrderModificationError":

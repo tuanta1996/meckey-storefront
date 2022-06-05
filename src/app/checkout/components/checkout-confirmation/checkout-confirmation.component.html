@@ -1,19 +1,28 @@
 <div *ngIf="order$ | async as order">
     <div class="text-center mb-4">
-        <h2 class="display-4">Thank you for your order!</h2>
+        <h2 class="display-4">
+            {{ "mechkey.checkout.thank" | translate }}
+        </h2>
         <ul class="order-details list-unstyled">
             <li class="lead">
-                <span class="text-muted">Order code:</span> {{ order.code }}
+                <span class="text-muted">
+                    {{ "mechkey.checkout.orderCode" | translate }}:</span
+                >
+                {{ order.code }}
             </li>
             <li class="lead">
-                <span class="text-muted">Placed:</span>
+                <span class="text-muted"
+                    >{{ "mechkey.checkout.placed" | translate }}:</span
+                >
                 {{ order.updatedAt | date: "medium" }}
             </li>
         </ul>
         <div
             class="alert alert-info my-4"
             role="alert"
-            *ngIf="order.payments.length > 0 && order.state === 'PaymentAuthorized'"
+            *ngIf="
+                order.payments.length > 0 && order.state === 'PaymentAuthorized'
+            "
             [innerHtml]="
                 sanitizer.bypassSecurityTrustHtml(
                     order.payments[0].metadata.public.postCheckoutPaymentInfo
@@ -48,5 +57,5 @@
     </div>
 </div>
 <ng-container *ngIf="notFound$ | async">
-    <h2 class="display-4">Page not found</h2>
+    <h2 class="display-4">{{ "mechkey.checkout.pageNotFound" | translate }}</h2>
 </ng-container>

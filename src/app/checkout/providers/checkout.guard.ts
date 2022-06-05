@@ -36,28 +36,32 @@ export class CheckoutGuard implements CanActivate {
             map(([orderState, signedIn]) => {
                 const component = route.component;
 
-                // if (component === CheckoutSignInComponent) {
-                //     if (signedIn) {
-                //         this.router.navigate(['/checkout', 'shipping']);
-                //         return false;
-                //     } else {
-                //         if (orderState === 'AddingItems') {
-                //             return true;
-                //         } else if (orderState === 'ArrangingPayment') {
-                //             this.router.navigate(['/checkout', 'payment']);
-                //             return false;
-                //         } else {
-                //             return false;
-                //         }
-                //     }
-                // } else
-                if (component === CheckoutShippingComponent) {
+                if (component === CheckoutSignInComponent) {
+                    if (signedIn) {
+                        this.router.navigate(["/checkout", "shipping"]);
+                        return false;
+                    } else {
+                        if (orderState === "AddingItems") {
+                            return true;
+                        } else if (orderState === "ArrangingPayment") {
+                            this.router.navigate(["/checkout", "payment"]);
+                            return false;
+                        } else {
+                            return false;
+                        }
+                    }
+                } else if (component === CheckoutShippingComponent) {
+                    console.log(orderState);
+                    console.log("aaaa");
                     if (orderState === "AddingItems") {
+                        console.log("bbbb");
                         return true;
                     } else if (orderState === "ArrangingPayment") {
+                        console.log("vvvv");
                         this.router.navigate(["/checkout", "payment"]);
                         return false;
                     } else {
+                        console.log("ccccc");
                         return false;
                     }
                 } else if (component === CheckoutPaymentComponent) {

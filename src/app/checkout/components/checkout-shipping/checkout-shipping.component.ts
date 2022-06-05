@@ -6,6 +6,7 @@ import {
     ViewChild,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 import { combineLatest, Observable, of } from "rxjs";
 import { map, mergeMap, switchMap, take, tap } from "rxjs/operators";
 
@@ -79,7 +80,8 @@ export class CheckoutShippingComponent implements OnInit {
         private modalService: ModalService,
         private notificationService: NotificationService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private translate: TranslateService
     ) {}
 
     ngOnInit() {
@@ -136,23 +138,27 @@ export class CheckoutShippingComponent implements OnInit {
     }
 
     createAddress() {
-        this.modalService
-            .fromComponent(AddressModalComponent, {
-                locals: {
-                    title: "Create new address",
-                },
-                closable: true,
-            })
-            .pipe(
-                switchMap(() =>
-                    this.dataService.query<GetCustomerAddresses.Query>(
-                        GET_CUSTOMER_ADDRESSES,
-                        null,
-                        "network-only"
+        this.translate
+            .get("mechkey.checkout.createAddress")
+            .subscribe((title) => {
+                this.modalService
+                    .fromComponent(AddressModalComponent, {
+                        locals: {
+                            title: title,
+                        },
+                        closable: true,
+                    })
+                    .pipe(
+                        switchMap(() =>
+                            this.dataService.query<GetCustomerAddresses.Query>(
+                                GET_CUSTOMER_ADDRESSES,
+                                null,
+                                "network-only"
+                            )
+                        )
                     )
-                )
-            )
-            .subscribe();
+                    .subscribe();
+            });
     }
 
     editAddress(address: Address.Fragment) {
@@ -212,7 +218,7 @@ export class CheckoutShippingComponent implements OnInit {
                     )
                 )
                 .subscribe((data) => {
-                    this.router.navigate(["./payment"], {
+                    this.router.navigate(["../payment"], {
                         relativeTo: this.route,
                     });
                 });

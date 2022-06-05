@@ -1,6 +1,8 @@
 <form [formGroup]="addressForm">
     <div class="form-group row">
-        <label for="fullName" class="col-sm-3 col-form-label">Full name</label>
+        <label for="fullName" class="col-sm-3 col-form-label">{{
+            "mechkey.form.fullName" | translate
+        }}</label>
         <div class="col-sm-9">
             <input
                 class="form-control"
@@ -10,9 +12,9 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="streetLine1" class="col-sm-3 col-form-label"
-            >Street Line 1</label
-        >
+        <label for="streetLine1" class="col-sm-3 col-form-label">{{
+            "mechkey.form.streetLine1" | translate
+        }}</label>
         <div class="col-sm-9">
             <input
                 class="form-control"
@@ -22,13 +24,17 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="city" class="col-sm-3 col-form-label">City</label>
+        <label for="city" class="col-sm-3 col-form-label">{{
+            "mechkey.form.city" | translate
+        }}</label>
         <div class="col-sm-9">
             <input class="form-control" formControlName="city" id="city" />
         </div>
     </div>
     <div class="form-group row">
-        <label for="province" class="col-sm-3 col-form-label">Province</label>
+        <label for="province" class="col-sm-3 col-form-label">{{
+            "mechkey.form.province" | translate
+        }}</label>
         <div class="col-sm-9">
             <input
                 class="form-control"
@@ -38,7 +44,9 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="countryCode" class="col-sm-3 col-form-label">Country</label>
+        <label for="countryCode" class="col-sm-3 col-form-label">{{
+            "mechkey.form.country" | translate
+        }}</label>
         <div class="col-sm-9">
             <select
                 class="custom-select"
@@ -55,9 +63,9 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="phoneNumber" class="col-sm-3 col-form-label"
-            >Phone number</label
-        >
+        <label for="phoneNumber" class="col-sm-3 col-form-label">{{
+            "mechkey.form.phoneNumber" | translate
+        }}</label>
         <div class="col-sm-9">
             <input
                 class="form-control"
