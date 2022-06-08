@@ -42,9 +42,6 @@
     }
 }
 
-.description {
-}
-
 .purchase-options {
     margin: $spacer * 2 0;
 }
@@ -114,27 +111,35 @@
 }
 
 .sale-type {
-    padding: 1rem 2rem;
+    border: 1px;
+    border-style: solid;
+    padding: 8px 15px;
     text-transform: capitalize;
-    color: white;
+    background-color: white;
     font-weight: 700;
+    font-size: 16px;
+    border-radius: 3px;
     display: inline-block;
 }
 
 .type-instock {
-    background-color: #49a339;
+    color: #49a339;
+    border-color: #49a339;
 }
 
 .type-preorder {
-    background-color: #fee548;
+    color: #fee548;
+    border-color: #fee548;
 }
 
 .type-groupbuy {
-    background-color: #0c96a0;
+    color: #0099db;
+    border-color: #0099db;
 }
 
 .type-limited {
-    background-color: #0c96a0;
+    color: #ff4a33;
+    border-color: #ff4a33;
 }
 
 .product-list {

@@ -74,19 +74,19 @@
                     <fa-icon size="2x" [icon]="['fab', 'youtube']"></fa-icon>
                 </div>
                 <div class="mailist mt-5 d-flex justify-content-around">
-                    <div class="lead col-9">
+                    <div class="lead col-xs-8 col-sm-9">
                         {{ "mechkey.footer.subcribe" | translate }}
                     </div>
                     <button
                         type="button"
-                        class="btn btn-outline-secondary btn-lg col-3"
+                        class="btn btn-outline-secondary btn-lg col-xs-4 col-sm-3"
                     >
                         {{ "mechkey.footer.btnSubcribe" | translate }}
                     </button>
                 </div>
                 <div class="switch-lang mt-2 d-flex justify-content-end">
                     <select
-                        class="form-control col-3"
+                        class="form-control col-xs-4 col-sm-3"
                         #selectedLang
                         (change)="switchLang(selectedLang.value)"
                     >

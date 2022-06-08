@@ -24,6 +24,7 @@ export const SEARCH_PRODUCTS = gql`
                         y
                     }
                 }
+                customFields
             }
             totalItems
             facetValues {

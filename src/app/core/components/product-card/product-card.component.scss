@@ -31,26 +31,28 @@
     position: absolute;
     bottom: 10px;
     left: 10px;
-    padding: 1rem 2rem;
+    padding: 8px 15px;
     text-transform: capitalize;
-    color: white;
+    background-color: white;
     font-weight: 700;
+    font-size: 16px;
+    border-radius: 3px;
 }
 
 .type-instock {
-    background-color: #49a339;
+    color: #49a339;
 }
 
 .type-preorder {
-    background-color: #fee548;
+    color: #fee548;
 }
 
 .type-groupbuy {
-    background-color: #0c96a0;
+    color: #0099db;
 }
 
 .type-limited {
-    background-color: #0c96a0;
+    color: #ff4a33;
 }
 
 .product-name {

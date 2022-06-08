@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    apiHost: "http://thekeebs.store",
+    apiHost: "https://thekeebs.store",
     apiPort: 3010,
     shopApiPath: "shop-api",
     baseHref: "/",

@@ -109,7 +109,7 @@ export function apolloOptionsFactory(httpLink: HttpLink, platformId: any) {
     // Note: the intermediate assignment to `fn` is required to prevent
     // an angular compiler error. See https://stackoverflow.com/a/51977115/772859
     let { apiHost, apiPort, shopApiPath } = environment;
-    let language = localStorage.getItem("language") || "en";
+    let language = localStorage.getItem("language") || "vi";
     const isServer = isPlatformServer(platformId);
     apolloCache = new InMemoryCache({
         possibleTypes: possibleTypesData.possibleTypes,

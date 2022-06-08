@@ -64,3 +64,13 @@ $spacer: 1rem;
     justify-content: center;
     column-gap: 3%;
 }
+
+@media only screen and (max-width: 749px) {
+    .top-seller {
+        display: block;
+    }
+
+    .product-list {
+        display: block;
+    }
+}

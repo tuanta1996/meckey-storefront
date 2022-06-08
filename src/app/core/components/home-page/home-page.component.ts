@@ -127,7 +127,11 @@ export class HomePageComponent implements OnInit {
                     ")"
                 );
             }),
-            map((style) => this.sanitizer.bypassSecurityTrustStyle(style))
+            map((style) => {
+                return style !== ""
+                    ? this.sanitizer.bypassSecurityTrustStyle(style)
+                    : "";
+            })
         );
     }
 }
@@ -152,6 +156,7 @@ const GET_PRODUCT_LIST = gql`
                 }
                 productName
                 collectionIds
+                customFields
             }
         }
     }
