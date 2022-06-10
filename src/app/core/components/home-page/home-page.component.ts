@@ -42,13 +42,15 @@ export class HomePageComponent implements OnInit {
 
         const topSellers = collection.pipe(
             map((data: any) =>
-                data.productVariants.items.filter(
-                    (item: any) =>
-                        item.languageCode === localStorage.getItem("language")
+                data.productVariants.items.filter((item: any) =>
+                    localStorage.getItem("language")
+                        ? item.languageCode === localStorage.getItem("language")
+                        : item.languageCode === "vi"
                 )
             ),
             shareReplay(1)
         );
+
         this.topSellers$ = topSellers.pipe(
             map((data: any[]) => {
                 return data
@@ -80,13 +82,13 @@ export class HomePageComponent implements OnInit {
             }),
             shareReplay(1)
         );
+
         this.topSellersLoaded$ = topSellers.pipe(
             map((items) => 0 < items.length)
         );
         const featureCollectionId = collection.pipe(
             map((data: any) => data.id)
         );
-
         featureCollectionId.subscribe((id) => {
             this.productList$ = this.dataService.query(GET_PRODUCT_LIST).pipe(
                 map((data) =>
