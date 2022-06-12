@@ -1,37 +1,50 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Observable } from "rxjs";
 
-import { AddPayment, GetEligiblePaymentMethods } from '../../../common/generated-types';
-import { DataService } from '../../../core/providers/data/data.service';
-import { StateService } from '../../../core/providers/state/state.service';
+import {
+    AddPayment,
+    GetEligiblePaymentMethods,
+} from "../../../common/generated-types";
+import { DataService } from "../../../core/providers/data/data.service";
+import { StateService } from "../../../core/providers/state/state.service";
 
-import { ADD_PAYMENT, GET_ELIGIBLE_PAYMENT_METHODS } from './checkout-payment.graphql';
-import { map } from 'rxjs/operators';
-import { DomSanitizer } from '@angular/platform-browser';
+import {
+    ADD_PAYMENT,
+    GET_ELIGIBLE_PAYMENT_METHODS,
+} from "./checkout-payment.graphql";
+import { map } from "rxjs/operators";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
-    selector: 'vsf-checkout-payment',
-    templateUrl: './checkout-payment.component.html',
-    styleUrls: ['./checkout-payment.component.scss'],
+    selector: "vsf-checkout-payment",
+    templateUrl: "./checkout-payment.component.html",
+    styleUrls: ["./checkout-payment.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckoutPaymentComponent implements OnInit {
     cardNumber: string;
     expMonth: number;
     expYear: number;
-    paymentMethods$: Observable<GetEligiblePaymentMethods.EligiblePaymentMethods[]>
+    paymentMethods$: Observable<
+        GetEligiblePaymentMethods.EligiblePaymentMethods[]
+    >;
     paymentErrorMessage: string | undefined;
 
-    constructor(private dataService: DataService,
-                private stateService: StateService,
-                private router: Router,
-                private route: ActivatedRoute,
-                private sanitizer: DomSanitizer) { }
+    constructor(
+        private dataService: DataService,
+        private stateService: StateService,
+        private router: Router,
+        private route: ActivatedRoute,
+        private sanitizer: DomSanitizer
+    ) {}
 
     ngOnInit() {
-        this.paymentMethods$ = this.dataService.query<GetEligiblePaymentMethods.Query>(GET_ELIGIBLE_PAYMENT_METHODS)
-            .pipe(map(res => res.eligiblePaymentMethods));
+        this.paymentMethods$ = this.dataService
+            .query<GetEligiblePaymentMethods.Query>(
+                GET_ELIGIBLE_PAYMENT_METHODS
+            )
+            .pipe(map((res) => res.eligiblePaymentMethods));
     }
 
     getMonths(): number[] {
@@ -43,34 +56,48 @@ export class CheckoutPaymentComponent implements OnInit {
         return Array.from({ length: 10 }).map((_, i) => year + i);
     }
 
-    completeOrder(paymentMethodCode: GetEligiblePaymentMethods.EligiblePaymentMethods) {
+    completeOrder(
+        paymentMethodCode: GetEligiblePaymentMethods.EligiblePaymentMethods
+    ) {
         console.log(paymentMethodCode);
-        this.dataService.mutate<AddPayment.Mutation, AddPayment.Variables>(ADD_PAYMENT, {
-            input: {
-                method: paymentMethodCode.code,
-                metadata: paymentMethodCode.customFields,
-            },
-        })
+        this.dataService
+            .mutate<AddPayment.Mutation, AddPayment.Variables>(ADD_PAYMENT, {
+                input: {
+                    method: paymentMethodCode.code,
+                    metadata: {},
+                },
+            })
             .subscribe(async ({ addPaymentToOrder }) => {
                 switch (addPaymentToOrder?.__typename) {
-                    case 'Order':
+                    case "Order":
                         const order = addPaymentToOrder;
-                        if (order && (order.state === 'PaymentSettled' || order.state === 'PaymentAuthorized')) {
-                            await new Promise<void>(resolve => setTimeout(() => {
-                                this.stateService.setState('activeOrderId', null);
-                                resolve();
-                            }, 500));
-                            this.router.navigate(['../confirmation', order.code], { relativeTo: this.route });
+                        if (
+                            order &&
+                            (order.state === "PaymentSettled" ||
+                                order.state === "PaymentAuthorized")
+                        ) {
+                            await new Promise<void>((resolve) =>
+                                setTimeout(() => {
+                                    this.stateService.setState(
+                                        "activeOrderId",
+                                        null
+                                    );
+                                    resolve();
+                                }, 500)
+                            );
+                            this.router.navigate(
+                                ["../confirmation", order.code],
+                                { relativeTo: this.route }
+                            );
                         }
                         break;
-                    case 'OrderPaymentStateError':
-                    case 'PaymentDeclinedError':
-                    case 'PaymentFailedError':
-                    case 'OrderStateTransitionError':
+                    case "OrderPaymentStateError":
+                    case "PaymentDeclinedError":
+                    case "PaymentFailedError":
+                    case "OrderStateTransitionError":
                         this.paymentErrorMessage = addPaymentToOrder.message;
                         break;
                 }
-
             });
     }
 }
