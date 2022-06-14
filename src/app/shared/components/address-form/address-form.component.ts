@@ -34,6 +34,7 @@ export class AddressFormComponent implements OnChanges {
             phoneNumber: [
                 "",
                 Validators.pattern(/((09|03|07|08|05)+([0-9]{8}(?:d{1})?)\b)/),
+                Validators.required,
             ],
         });
     }
