@@ -83,7 +83,11 @@
             "verifyNewEmailAddress": "Xác thực email mới",
             "signOut": "Đăng xuất",
             "resetPassword": "Cài lại mật khẩu",
-            "resetMessage": "Một email đã được gửi đến email của bạn. Hãy mở mail và làm theo hướng dẫn."
+            "resetMessage": "Một email đã được gửi đến email của bạn. Hãy mở mail và làm theo hướng dẫn.",
+            "chooseNewPass": "Nhập mật khẩu mới",
+            "almostDone": "Bước cuối!",
+            "completePasswordMes": "Nhập mật khẩu để hoàn thành đăng kí",
+            "createAccount": "Tạo tài khoản"
         },
         "nav": {
             "orders": "Về đơn hàng",

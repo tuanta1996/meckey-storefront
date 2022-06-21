@@ -82,7 +82,11 @@
             "verifyNewEmailAddress": "Verify new email address",
             "signOut": "Sign out",
             "resetPassword": "Reset password",
-            "resetMessage": "An email has been sent to your email. Please check and follow the included instructions."
+            "resetMessage": "An email has been sent to your email. Please check and follow the included instructions.",
+            "chooseNewPass": "Choose a new password",
+            "almostDone": "Almost done!",
+            "completePasswordMes": "Now just choose a password to complete the process",
+            "createAccount": "Create account"
         },
         "nav": {
             "orders": "Orders",
