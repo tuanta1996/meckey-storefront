@@ -51,17 +51,12 @@ export class CheckoutGuard implements CanActivate {
                         }
                     }
                 } else if (component === CheckoutShippingComponent) {
-                    console.log(orderState);
-                    console.log("aaaa");
                     if (orderState === "AddingItems") {
-                        console.log("bbbb");
                         return true;
                     } else if (orderState === "ArrangingPayment") {
-                        console.log("vvvv");
                         this.router.navigate(["/checkout", "payment"]);
                         return false;
                     } else {
-                        console.log("ccccc");
                         return false;
                     }
                 } else if (component === CheckoutPaymentComponent) {

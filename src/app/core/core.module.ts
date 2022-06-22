@@ -64,7 +64,6 @@ let providedCacheState: any | undefined;
         SharedModule,
         BrowserModule,
         // ngx-translate and the loader module
-        HttpClientModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,

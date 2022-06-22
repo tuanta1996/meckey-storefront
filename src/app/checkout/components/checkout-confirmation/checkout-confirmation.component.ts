@@ -64,10 +64,6 @@ export class CheckoutConfirmationComponent implements OnInit {
         );
         this.order$ = orderRequest$.pipe(filter(notNullOrUndefined));
         this.notFound$ = orderRequest$.pipe(map((res) => !res));
-
-        this.order$.subscribe((order) => {
-            console.log(order);
-        });
     }
 
     register() {
