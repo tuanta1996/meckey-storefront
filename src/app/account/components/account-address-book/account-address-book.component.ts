@@ -3,8 +3,8 @@ import { TranslateService } from "@ngx-translate/core";
 import { gql } from "apollo-angular";
 import { Observable } from "rxjs";
 import { map, switchMap } from "rxjs/operators";
-import { ModalService } from "src/app/core/providers/modal/modal.service";
-import { AddressModalComponent } from "src/app/shared/components/address-modal/address-modal.component";
+import { ModalService } from "../../../core/providers/modal/modal.service";
+import { AddressModalComponent } from "../../../shared/components/address-modal/address-modal.component";
 
 import {
     DeleteAddress,
@@ -70,10 +70,16 @@ export class AccountAddressBookComponent implements OnInit {
                     id: addressId,
                 }
             )
-            .subscribe((data) => {
-                console.log(data);
-                window.location.reload();
-            });
+            .pipe(
+                switchMap(() =>
+                    this.dataService.query<GetCustomerAddresses.Query>(
+                        GET_CUSTOMER_ADDRESSES,
+                        null,
+                        "network-only"
+                    )
+                )
+            )
+            .subscribe();
     }
 }
 
