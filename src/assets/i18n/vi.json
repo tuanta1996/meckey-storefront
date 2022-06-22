@@ -87,7 +87,8 @@
             "chooseNewPass": "Nhập mật khẩu mới",
             "almostDone": "Bước cuối!",
             "completePasswordMes": "Nhập mật khẩu để hoàn thành đăng kí",
-            "createAccount": "Tạo tài khoản"
+            "createAccount": "Tạo tài khoản",
+            "delete": "Xóa"
         },
         "nav": {
             "orders": "Về đơn hàng",

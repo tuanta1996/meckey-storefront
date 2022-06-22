@@ -86,7 +86,8 @@
             "chooseNewPass": "Choose a new password",
             "almostDone": "Almost done!",
             "completePasswordMes": "Now just choose a password to complete the process",
-            "createAccount": "Create account"
+            "createAccount": "Create account",
+            "delete": "Delete"
         },
         "nav": {
             "orders": "Orders",

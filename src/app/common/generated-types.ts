@@ -3449,6 +3449,11 @@ export namespace CreateAddress {
     >;
 }
 
+export namespace DeleteAddress {
+    export type Variables = DeleteAddressMutationVariables;
+    export type Mutation = DeleteAddressMutation;
+}
+
 export namespace SignIn {
     export type Variables = SignInMutationVariables;
     export type Mutation = SignInMutation;
@@ -4415,8 +4420,16 @@ export type CreateAddressMutationVariables = Exact<{
     input: CreateAddressInput;
 }>;
 
+export type DeleteAddressMutationVariables = Exact<{
+    id: Scalars["ID"];
+}>;
+
 export type CreateAddressMutation = { __typename?: "Mutation" } & {
     createCustomerAddress: { __typename?: "Address" } & AddressFragment;
+};
+
+export type DeleteAddressMutation = { __typename?: "Mutation" } & {
+    deleteCustomerAddress: { __typename?: "Success" } & Success;
 };
 
 export type SignInMutationVariables = Exact<{
