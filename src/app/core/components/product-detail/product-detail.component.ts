@@ -190,6 +190,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     }
 
     changeOption(e: any) {
+        this.qty = 1;
         document
             .querySelectorAll("label." + e.target.classList[0])
             ?.forEach((label: any) => label.classList.remove("active"));
