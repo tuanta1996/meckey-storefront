@@ -30,14 +30,16 @@
             "payWithMethod": "Phương thức thanh toán",
             "completeOrder": "Hoàn thành",
             "change": "Thay đổi",
-            "thank": "Cảm ơn bạn đã mua hàng tại The Keebs Shop",
+            "thank": "Cảm ơn bạn đã mua hàng tại The Keebs Store",
             "orderCode": "Mã đơn hàng",
             "placed": "Vào",
             "pageNotFound": "Không tìm thấy trang",
             "stateAccount": "Tài khoản",
             "stateShipping": "Vận chuyển",
             "statePayment": "Thanh toán",
-            "stateComplete": "Hoàn tất"
+            "stateComplete": "Hoàn tất",
+            "fulfillmentMethod": "Cách hoàn thành đơn hàng",
+            "trackingCode": "Mã vận đơn"
         },
         "form": {
             "firstName": "Họ",

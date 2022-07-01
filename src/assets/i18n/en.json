@@ -30,14 +30,16 @@
             "payWithMethod": "Pay with method",
             "completeOrder": "Complete order",
             "change": "Change",
-            "thank": "Thank you for choosing The Keebs Shop",
+            "thank": "Thank you for choosing The Keebs Store",
             "orderCode": "Order code",
             "placed": "Placced",
             "pageNotFound": "Page not found",
             "stateAccount": "Account",
             "stateShipping": "Shipping",
             "statePayment": "Payment",
-            "stateComplete": "Complete"
+            "stateComplete": "Complete",
+            "fulfillmentMethod": "Fulfillment method",
+            "trackingCode": "Tracking code"
         },
         "form": {
             "firstName": "First name",

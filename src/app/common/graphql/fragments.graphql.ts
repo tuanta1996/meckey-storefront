@@ -1,5 +1,4 @@
-import {gql} from 'apollo-angular';
-
+import { gql } from "apollo-angular";
 
 export const ASSET_FRAGMENT = gql`
     fragment Asset on Asset {
@@ -118,5 +117,12 @@ export const ERROR_RESULT_FRAGMENT = gql`
     fragment ErrorResult on ErrorResult {
         errorCode
         message
+    }
+`;
+
+export const FULFILLMENTS = gql`
+    fragment Fulfillment on Fulfillment {
+        trackingCode
+        method
     }
 `;
