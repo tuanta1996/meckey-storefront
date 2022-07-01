@@ -1,17 +1,30 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    Output,
+} from "@angular/core";
 
-import { Cart, CartFragment, GetActiveOrder } from '../../../common/generated-types';
+import {
+    Cart,
+    CartFragment,
+    GetActiveOrder,
+} from "../../../common/generated-types";
 
 @Component({
-    selector: 'vsf-cart-contents',
-    templateUrl: './cart-contents.component.html',
-    styleUrls: ['./cart-contents.component.scss'],
+    selector: "vsf-cart-contents",
+    templateUrl: "./cart-contents.component.html",
+    styleUrls: ["./cart-contents.component.scss"],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartContentsComponent {
     @Input() cart: GetActiveOrder.ActiveOrder;
     @Input() canAdjustQuantities = false;
-    @Output() setQuantity = new EventEmitter<{ itemId: string; quantity: number; }>();
+    @Output() setQuantity = new EventEmitter<{
+        itemId: string;
+        quantity: number;
+    }>();
 
     increment(item: Cart.Lines) {
         this.setQuantity.emit({ itemId: item.id, quantity: item.quantity + 1 });
@@ -21,7 +34,18 @@ export class CartContentsComponent {
         this.setQuantity.emit({ itemId: item.id, quantity: item.quantity - 1 });
     }
 
-    trackByFn(index: number, line: { id: string; }) {
+    apply(item: Cart.Lines, input: any) {
+        this.setQuantity.emit({
+            itemId: item.id,
+            quantity: Number(input.target.value),
+        });
+    }
+
+    removeAll(item: Cart.Lines) {
+        this.setQuantity.emit({ itemId: item.id, quantity: 0 });
+    }
+
+    trackByFn(index: number, line: { id: string }) {
         return line.id;
     }
 
@@ -29,7 +53,7 @@ export class CartContentsComponent {
         return discount.adjustmentSource;
     }
 
-    isDiscounted(line: CartFragment['lines'][number]): boolean {
+    isDiscounted(line: CartFragment["lines"][number]): boolean {
         return line.discountedLinePriceWithTax < line.linePriceWithTax;
     }
 
@@ -37,7 +61,8 @@ export class CartContentsComponent {
      * Filters out the Promotion adjustments for an OrderLine and aggregates the discount.
      */
     getLinePromotions(adjustments: Cart.Discounts[]) {
-        const groupedPromotions = adjustments.filter(a => a.type === 'PROMOTION')
+        const groupedPromotions = adjustments
+            .filter((a) => a.type === "PROMOTION")
             .reduce((groups, promotion) => {
                 if (!groups[promotion.description]) {
                     groups[promotion.description] = promotion.amount;
@@ -45,7 +70,10 @@ export class CartContentsComponent {
                     groups[promotion.description] += promotion.amount;
                 }
                 return groups;
-            }, {} as { [description: string]: number; });
-        return Object.entries(groupedPromotions).map(([key, value]) => ({ description: key, amount: value }));
+            }, {} as { [description: string]: number });
+        return Object.entries(groupedPromotions).map(([key, value]) => ({
+            description: key,
+            amount: value,
+        }));
     }
 }

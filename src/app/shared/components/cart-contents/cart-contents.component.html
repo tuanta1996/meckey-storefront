@@ -1,34 +1,74 @@
-<div *ngIf="cart;" class="cart-contents">
+<div *ngIf="cart" class="cart-contents">
     <div class="items">
         <ng-container *ngFor="let line of cart.lines; trackBy: trackByFn">
             <div class="item" [class.has-discount]="isDiscounted(line)">
                 <div class="thumb">
-                    <img [src]="line.featuredAsset?.preview + '?preset=tiny'">
+                    <img [src]="line.featuredAsset?.preview + '?preset=tiny'" />
                 </div>
                 <div class="details">
                     <div class="name">{{ line.productVariant?.name }}</div>
                     <div class="figures">
-                        <div class="price">{{ line.unitPriceWithTax | formatPrice }}</div>
+                        <div class="price">
+                            {{ line.unitPriceWithTax | formatPrice }}
+                        </div>
                         <div class="qty-controls">
-                            <button class="btn btn-sm"
-                                    *ngIf="canAdjustQuantities"
-                                    (click)="decrement(line)">
-                                <fa-icon aria-label="Remove 1" icon="minus"></fa-icon>
+                            <button
+                                class="btn btn-sm"
+                                *ngIf="canAdjustQuantities"
+                                (click)="decrement(line)"
+                            >
+                                <fa-icon
+                                    aria-label="Remove 1"
+                                    icon="minus"
+                                ></fa-icon>
                             </button>
-                            <div class="qty">{{ line.quantity }}</div>
-                            <button class="btn btn-sm"
+                            <div class="qty">
+                                <input
                                     *ngIf="canAdjustQuantities"
-                                    (click)="increment(line)">
-                                <fa-icon aria-label="Add 1" icon="plus"></fa-icon>
+                                    type="number"
+                                    (change)="apply(line, $event)"
+                                    value="{{ line.quantity }}"
+                                    min="1"
+                                />
+                                <span *ngIf="!canAdjustQuantities">{{
+                                    line.quantity
+                                }}</span>
+                            </div>
+                            <button
+                                class="btn btn-sm"
+                                *ngIf="canAdjustQuantities"
+                                (click)="increment(line)"
+                            >
+                                <fa-icon
+                                    aria-label="Add 1"
+                                    icon="plus"
+                                ></fa-icon>
                             </button>
                         </div>
                         <div class="total">
-                            <div class="list-price">{{ line.linePriceWithTax | formatPrice }}</div>
+                            <div class="list-price">
+                                {{ line.linePriceWithTax | formatPrice }}
+                            </div>
                             <div class="discounted">
-                                {{ line.discountedLinePriceWithTax | formatPrice }}
+                                {{
+                                    line.discountedLinePriceWithTax
+                                        | formatPrice
+                                }}
                             </div>
                         </div>
-
+                        <div class="remove">
+                            <button
+                                class="btn btn-sm"
+                                *ngIf="canAdjustQuantities"
+                                (click)="removeAll(line)"
+                            >
+                                <fa-icon
+                                    aria-label="remove all"
+                                    icon="times"
+                                    class="text-secondary"
+                                ></fa-icon>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,7 +86,10 @@
             <span>{{ "mechkey.cart.shipping" | translate }}:</span>
             <span>{{ cart.shippingWithTax | formatPrice }}</span>
         </div>
-        <div class="shipping-method" *ngFor="let shippingLine of cart.shippingLines">
+        <div
+            class="shipping-method"
+            *ngFor="let shippingLine of cart.shippingLines"
+        >
             {{ shippingLine.shippingMethod.name }}
         </div>
     </div>

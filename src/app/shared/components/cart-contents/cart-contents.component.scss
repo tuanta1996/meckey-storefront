@@ -73,7 +73,10 @@
     color: $gray-700;
 }
 
-.order-tax, .totals, .order-adjustments, .shipping {
+.order-tax,
+.totals,
+.order-adjustments,
+.shipping {
     margin-top: $spacer;
     border-top: 1px dashed #ddd;
     padding-top: $spacer;
@@ -104,3 +107,10 @@
     font-size: 14px;
 }
 
+.qty input {
+    text-align: center;
+    width: 60px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: var(--color_bg);
+}
