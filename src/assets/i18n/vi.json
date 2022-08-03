@@ -7,7 +7,8 @@
             "relatedProduct": "Sản phẩm cùng loại",
             "add2Cart": "Thêm vào giỏ hàng",
             "added2Cart": "Thêm vào giỏ hàng",
-            "viewCart": "Xem giỏ hàng"
+            "viewCart": "Xem giỏ hàng",
+            "noVariant": "Sản phẩm này không có phiên bản nào có sẵn"
         },
         "cart": {
             "cart": "Giỏ hàng",

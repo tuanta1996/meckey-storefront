@@ -1,12 +1,18 @@
 <ng-container *ngIf="order$ | async as order">
     <h2>{{ "mechkey.checkout.orderCode" | translate }} {{ order.code }}</h2>
-    <div class="fulfillmentInfo mb-1">
+    <div class="fulfillmentInfo mb-1" *ngIf="order.fulfillments.length > 0">
         <b>{{ "mechkey.checkout.fulfillmentMethod" | translate }}: </b>
-        <span>{{ order.fulfillments[0].method }}</span>
+        <span>{{
+            order.fulfillments.length > 0 ? order.fulfillments[0].method : ""
+        }}</span>
     </div>
-    <div class="fulfillmentInfo mb-3">
+    <div class="fulfillmentInfo mb-3" *ngIf="order.fulfillments.length > 0">
         <b>{{ "mechkey.checkout.trackingCode" | translate }}: </b>
-        <span>{{ order.fulfillments[0].trackingCode }}</span>
+        <span>{{
+            order.fulfillments.length > 0
+                ? order.fulfillments[0].trackingCode
+                : ""
+        }}</span>
     </div>
 
     <div class="row">

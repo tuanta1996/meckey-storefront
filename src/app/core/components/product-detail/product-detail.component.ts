@@ -76,9 +76,11 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
             )
             .subscribe(([product, lastCollectionSlug]) => {
                 this.product = product;
-                if (this.product.featuredAsset) {
-                    this.selectedAsset = this.product.featuredAsset;
-                }
+                this.product.variants = product.variants.filter((item: any) => {
+                    return localStorage.getItem("language")
+                        ? item.languageCode === localStorage.getItem("language")
+                        : item.languageCode === "vi";
+                });
                 this.selectedVariant = product.variants[0];
                 const collection = this.getMostRelevantCollection(
                     product.collections,

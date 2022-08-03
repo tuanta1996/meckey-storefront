@@ -16,7 +16,9 @@
             </div>
             <div class="col-12 col-md-6" #zoomPreviewArea>
                 <h2 class="display-4 product-name">{{ product.name }}</h2>
-                <span class="sale-type type-{{ product.customFields.salesType }}">
+                <span
+                    class="sale-type type-{{ product.customFields.salesType }}"
+                >
                     {{ product.customFields.salesType }}
                 </span>
                 <div class="purchase-options">
@@ -111,13 +113,18 @@
                             />
                         </div>
                         <button
-                            [disabled]="qty === 0"
+                            [disabled]="
+                                qty === 0 || product.variants.length === 0
+                            "
                             class="btn btn-primary btn-lg flex-grow-1"
                             (click)="addToCart(selectedVariant, qty)"
                         >
                             {{ "mechkey.detail.add2Cart" | translate }}
                         </button>
                     </div>
+                </div>
+                <div *ngIf="product.variants.length === 0">
+                    <h3> {{ "mechkey.detail.noVariant" | translate }}</h3>
                 </div>
             </div>
         </div>

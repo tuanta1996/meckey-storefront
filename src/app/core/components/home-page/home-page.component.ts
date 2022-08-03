@@ -42,11 +42,27 @@ export class HomePageComponent implements OnInit {
 
         const topSellers = collection.pipe(
             map((data: any) =>
-                data.productVariants.items.filter((item: any) =>
-                    localStorage.getItem("language")
-                        ? item.languageCode === localStorage.getItem("language")
-                        : item.languageCode === "vi"
-                )
+                Object.entries(
+                    data.productVariants.items
+                        .filter((item: any) =>
+                            localStorage.getItem("language")
+                                ? item.product.languageCode ===
+                                  localStorage.getItem("language")
+                                : item.product.languageCode === "vi"
+                        )
+                        .reduce((groups: any[], item: any) => {
+                            const group = groups[item.productId] || [];
+                            group.push(item);
+                            groups[item.productId] = group;
+                            return groups;
+                        }, {})
+                ).map((item: any) => {
+                    return item.length > 1
+                        ? item[1].length > 0
+                            ? item[1][0]
+                            : ""
+                        : "";
+                })
             ),
             shareReplay(1)
         );
@@ -106,10 +122,9 @@ export class HomePageComponent implements OnInit {
 
         this.featureProduct$ = topSellers.pipe(
             map((productList) => {
-                return productList.find(
-                    (product: any) =>
-                        product.product.customFields.featuredBanner !== null
-                );
+                return productList.find((product: any) => {
+                    return product.product.customFields.featuredBanner !== null;
+                });
             })
         );
         const assetPreviewPipe = new AssetPreviewPipe();

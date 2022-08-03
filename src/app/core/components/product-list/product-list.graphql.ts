@@ -75,6 +75,7 @@ export const GET_COLLECTION = gql`
                     languageCode
                     priceWithTax
                     product {
+                        languageCode
                         slug
                         name
                         featuredAsset {

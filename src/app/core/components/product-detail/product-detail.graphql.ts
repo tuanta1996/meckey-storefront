@@ -15,6 +15,7 @@ export const GET_PRODUCT_DETAIL = gql`
             variants {
                 id
                 name
+                languageCode
                 options {
                     id
                     code
